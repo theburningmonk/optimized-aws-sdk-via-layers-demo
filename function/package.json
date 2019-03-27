@@ -1,0 +1,15 @@
+{
+  "name": "function",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "aws-sdk": "^2.429.0"
+  }
+}

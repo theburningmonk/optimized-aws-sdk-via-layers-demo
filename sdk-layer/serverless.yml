@@ -1,0 +1,33 @@
+service: optimized-aws-sdk-layer
+
+plugins:
+  - randomize-logical-ids
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+
+custom:
+  randomizeLogicalIds:
+    - OptimizedDashawsDashsdkLambdaLayer
+
+layers:
+  optimized-aws-sdk:
+    path: opt
+    compatibleRuntimes: 
+      - nodejs8.10
+
+resources:
+  Resources:
+    # override the CloudFormation template for the layer to change DeletionPolicy
+    OptimizedDashawsDashsdkLambdaLayer:
+      DeletionPolicy: Retain
+
+    LayerArnParam:
+      Type: AWS::SSM::Parameter
+      Properties:
+        Type: String
+        Name: /Lambda/Layers/Optimized-AWS-SDK/ARN
+        Value: 
+          !Ref OptimizedDashawsDashsdkLambdaLayer
+        Description: The ARN of the optimized AWS SDK
